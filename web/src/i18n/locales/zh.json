@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "AINAR",
+    "subtitle": "AI 模型路由器",
+    "description": "统一的 OpenAI 兼容 API 网关，支持多个 AI 提供商"
+  },
+  "nav": {
+    "providers": "提供商",
+    "keys": "API 密钥",
+    "aliases": "别名"
+  },
+  "providers": {
+    "title": "上游提供商",
+    "description": "配置您的 AI 提供商",
+    "add": "添加提供商",
+    "edit": "编辑提供商",
+    "delete": "删除提供商",
+    "name": "提供商名称",
+    "code": "提供商代码",
+    "codeHint": "只允许使用小写字母、数字、'.'、'-' 和 '_'",
+    "apiType": "API 类型",
+    "baseUrl": "基础 URL",
+    "apiKey": "API 密钥",
+    "enabled": "已启用",
+    "disabled": "已禁用",
+    "confirmDelete": "确定要删除此提供商吗？",
+    "searchKnown": "搜索已知提供商...",
+    "noProviders": "未配置提供商。添加您的第一个提供商以开始。",
+    "hasKey": "已配置 API 密钥",
+    "noKey": "无 API 密钥"
+  },
+  "keys": {
+    "title": "下游 API 密钥",
+    "description": "管理您应用的 API 密钥",
+    "generate": "生成密钥",
+    "delete": "删除密钥",
+    "name": "密钥名称",
+    "limitType": "限制类型",
+    "limitTokens": "最大令牌数",
+    "usage": "使用量",
+    "created": "创建时间",
+    "confirmDelete": "确定要删除此 API 密钥吗？",
+    "keyGenerated": "您的 API 密钥已生成",
+    "keyWarning": "请立即保存此密钥，它只会显示一次！",
+    "noKeys": "未生成 API 密钥。为您的应用生成一个密钥。",
+    "limitTypes": {
+      "none": "无限制",
+      "daily": "每日",
+      "weekly": "每周",
+      "monthly": "每月",
+      "total": "总计"
+    },
+    "copy": "复制",
+    "copied": "已复制！"
+  },
+  "aliases": {
+    "title": "模型别名",
+    "description": "为长模型名称创建快捷方式",
+    "add": "添加别名",
+    "delete": "删除别名",
+    "from": "别名",
+    "to": "完整模型路径",
+    "confirmDelete": "确定要删除此别名吗？",
+    "noAliases": "未配置别名。添加别名以简化模型名称。",
+    "example": "示例：'ora' → 'openrouter/anthropic'"
+  },
+  "common": {
+    "save": "保存",
+    "cancel": "取消",
+    "close": "关闭",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "confirm": "确认",
+    "actions": "操作",
+    "status": "状态"
+  },
+  "errors": {
+    "loadFailed": "加载数据失败",
+    "saveFailed": "保存失败",
+    "deleteFailed": "删除失败",
+    "invalidCode": "无效的提供商代码",
+    "required": "此字段必填"
+  }
+}

@@ -1,0 +1,503 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        run: cd web && npm ci
+
+      - name: Build frontend
+        run: cd web && npm run build
+
+      - name: Upload frontend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: web/dist/
+
+  build-binaries:
+    needs: build-frontend
+    strategy:
+      matrix:
+        include:
+          # Linux builds
+          - os: ubuntu-latest
+            goos: linux
+            goarch: amd64
+            suffix: ''
+          - os: ubuntu-latest
+            goos: linux
+            goarch: arm64
+            suffix: ''
+          - os: ubuntu-latest
+            goos: linux
+            goarch: arm
+            suffix: ''
+          - os: ubuntu-latest
+            goos: linux
+            goarch: 386
+            suffix: ''
+          # Windows builds
+          - os: ubuntu-latest
+            goos: windows
+            goarch: amd64
+            suffix: '.exe'
+          - os: ubuntu-latest
+            goos: windows
+            goarch: arm64
+            suffix: '.exe'
+          # macOS builds
+          - os: macos-latest
+            goos: darwin
+            goarch: amd64
+            suffix: ''
+          - os: macos-latest
+            goos: darwin
+            goarch: arm64
+            suffix: ''
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Download frontend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: internal/webui/dist/
+
+      - name: Get version
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Build binary
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: 0
+        run: |
+          go build -ldflags="-s -w -X main.Version=${{ steps.version.outputs.VERSION }} -X main.GitCommit=${{ github.sha }} -X main.BuildDate=$(date -u +%Y-%m-%dT%H:%M:%SZ)" -o ainar-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.suffix }} ./cmd/ainar
+
+      - name: Upload binary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ainar-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: ainar-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.suffix }}
+
+  package-linux:
+    needs: build-binaries
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [amd64, arm64, arm, 386]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download binary
+        uses: actions/download-artifact@v4
+        with:
+          name: ainar-linux-${{ matrix.arch }}
+          path: .
+
+      - name: Get version
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Install packaging tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rpm build-essential
+
+      - name: Prepare package files
+        run: |
+          chmod +x ainar-linux-${{ matrix.arch }}
+          mkdir -p pkg/usr/bin
+          mkdir -p pkg/etc/ainar
+          mkdir -p pkg/lib/systemd/system
+          mkdir -p pkg/etc/init.d
+          cp ainar-linux-${{ matrix.arch }} pkg/usr/bin/ainar
+          
+          # Create default config
+          cat > pkg/etc/ainar/config.yaml << 'EOF'
+          server:
+            port: 8080
+            host: 127.0.0.1
+          webui:
+            status: local
+            port: 8081
+          providers: []
+          downstream_keys: []
+          aliases: []
+          EOF
+          
+          # Create systemd service
+          cat > pkg/lib/systemd/system/ainar.service << 'EOF'
+          [Unit]
+          Description=AINAR - AI Model Router
+          After=network.target
+          
+          [Service]
+          Type=simple
+          User=ainar
+          Group=ainar
+          ExecStart=/usr/bin/ainar serve
+          Restart=always
+          RestartSec=5
+          
+          [Install]
+          WantedBy=multi-user.target
+          EOF
+          
+          # Create SysVinit script
+          cat > pkg/etc/init.d/ainar << 'INITSCRIPT'
+          #!/bin/sh
+          ### BEGIN INIT INFO
+          # Provides:          ainar
+          # Required-Start:    $remote_fs $syslog $network
+          # Required-Stop:     $remote_fs $syslog $network
+          # Default-Start:     2 3 4 5
+          # Default-Stop:      0 1 6
+          # Short-Description: AINAR - AI Model Router
+          ### END INIT INFO
+          
+          NAME=ainar
+          DAEMON=/usr/bin/ainar
+          PIDFILE=/var/run/ainar.pid
+          
+          case "$1" in
+            start)
+              echo "Starting $NAME"
+              start-stop-daemon --start --background --make-pidfile --pidfile $PIDFILE --exec $DAEMON -- serve
+              ;;
+            stop)
+              echo "Stopping $NAME"
+              start-stop-daemon --stop --pidfile $PIDFILE
+              ;;
+            restart)
+              $0 stop
+              $0 start
+              ;;
+            *)
+              echo "Usage: $0 {start|stop|restart}"
+              exit 1
+              ;;
+          esac
+          exit 0
+          INITSCRIPT
+          chmod +x pkg/etc/init.d/ainar
+
+      - name: Build DEB package
+        run: |
+          mkdir -p deb/DEBIAN
+          cat > deb/DEBIAN/control << EOF
+          Package: ainar
+          Version: ${{ steps.version.outputs.VERSION }}
+          Architecture: ${{ matrix.arch }}
+          Maintainer: AINAR Team
+          Description: AINAR - AI Model Router
+           Unified OpenAI-compatible API gateway for multiple AI providers.
+          EOF
+          
+          cat > deb/DEBIAN/postinst << 'EOF'
+          #!/bin/sh
+          set -e
+          useradd -r -s /bin/false ainar 2>/dev/null || true
+          if command -v systemctl >/dev/null 2>&1; then
+            systemctl daemon-reload
+            systemctl enable ainar
+          elif command -v update-rc.d >/dev/null 2>&1; then
+            update-rc.d ainar defaults
+          fi
+          EOF
+          chmod +x deb/DEBIAN/postinst
+          
+          cat > deb/DEBIAN/prerm << 'EOF'
+          #!/bin/sh
+          set -e
+          if command -v systemctl >/dev/null 2>&1; then
+            systemctl stop ainar 2>/dev/null || true
+            systemctl disable ainar 2>/dev/null || true
+          elif [ -x /etc/init.d/ainar ]; then
+            /etc/init.d/ainar stop 2>/dev/null || true
+            update-rc.d -f ainar remove 2>/dev/null || true
+          fi
+          EOF
+          chmod +x deb/DEBIAN/prerm
+          
+          cp -r pkg/* deb/
+          dpkg-deb --build deb ainar_${{ steps.version.outputs.VERSION }}_${{ matrix.arch }}.deb
+
+      - name: Build RPM package
+        run: |
+          mkdir -p rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+          
+          cat > rpmbuild/SPECS/ainar.spec << EOF
+          Name: ainar
+          Version: ${{ steps.version.outputs.VERSION }}
+          Release: 1
+          Summary: AINAR - AI Model Router
+          License: Apache-2.0
+          
+          %description
+          Unified OpenAI-compatible API gateway for multiple AI providers.
+          
+          %install
+          mkdir -p %{buildroot}/usr/bin
+          mkdir -p %{buildroot}/etc/ainar
+          mkdir -p %{buildroot}/lib/systemd/system
+          mkdir -p %{buildroot}/etc/init.d
+          cp ${{ github.workspace }}/pkg/usr/bin/ainar %{buildroot}/usr/bin/
+          cp ${{ github.workspace }}/pkg/etc/ainar/config.yaml %{buildroot}/etc/ainar/
+          cp ${{ github.workspace }}/pkg/lib/systemd/system/ainar.service %{buildroot}/lib/systemd/system/
+          cp ${{ github.workspace }}/pkg/etc/init.d/ainar %{buildroot}/etc/init.d/
+          
+          %post
+          useradd -r -s /bin/false ainar 2>/dev/null || true
+          if command -v systemctl >/dev/null 2>&1; then
+            systemctl daemon-reload
+            systemctl enable ainar
+          fi
+          
+          %preun
+          if command -v systemctl >/dev/null 2>&1; then
+            systemctl stop ainar 2>/dev/null || true
+            systemctl disable ainar 2>/dev/null || true
+          fi
+          
+          %files
+          /usr/bin/ainar
+          /etc/ainar/config.yaml
+          /lib/systemd/system/ainar.service
+          /etc/init.d/ainar
+          EOF
+          
+          rpmbuild --define "_topdir ${{ github.workspace }}/rpmbuild" -bb rpmbuild/SPECS/ainar.spec
+          cp rpmbuild/RPMS/*/*.rpm ainar-${{ steps.version.outputs.VERSION }}-1.${{ matrix.arch }}.rpm 2>/dev/null || echo "RPM build skipped for ${{ matrix.arch }}"
+
+      - name: Upload DEB package
+        uses: actions/upload-artifact@v4
+        with:
+          name: ainar-deb-${{ matrix.arch }}
+          path: "*.deb"
+
+      - name: Upload RPM package
+        uses: actions/upload-artifact@v4
+        with:
+          name: ainar-rpm-${{ matrix.arch }}
+          path: "*.rpm"
+          if-no-files-found: ignore
+
+  package-windows:
+    needs: build-binaries
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download binary
+        uses: actions/download-artifact@v4
+        with:
+          name: ainar-windows-${{ matrix.arch }}
+          path: .
+
+      - name: Get version
+        id: version
+        shell: bash
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      # TODO: Add Windows MSI/EXE packaging with WiX or NSIS
+      # This is a placeholder for signing
+      # - name: Sign binary (placeholder)
+      #   run: echo "Signing placeholder - add code signing certificate"
+
+      - name: Create ZIP package
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path package
+          Copy-Item "ainar-windows-${{ matrix.arch }}.exe" -Destination "package/ainar.exe"
+          
+          # Create install script
+          @"
+          @echo off
+          echo Installing AINAR...
+          copy ainar.exe "%ProgramFiles%\AINAR\ainar.exe"
+          
+          REM Create service using sc command
+          sc create AINAR binPath= "%ProgramFiles%\AINAR\ainar.exe serve" start= auto DisplayName= "AINAR - AI Model Router"
+          echo AINAR installed successfully!
+          "@ | Out-File -FilePath "package/install.bat" -Encoding ASCII
+          
+          @"
+          @echo off
+          echo Uninstalling AINAR...
+          sc stop AINAR
+          sc delete AINAR
+          del "%ProgramFiles%\AINAR\ainar.exe"
+          rmdir "%ProgramFiles%\AINAR"
+          echo AINAR uninstalled successfully!
+          "@ | Out-File -FilePath "package/uninstall.bat" -Encoding ASCII
+          
+          Compress-Archive -Path package/* -DestinationPath "ainar-windows-${{ matrix.arch }}.zip"
+
+      - name: Upload Windows package
+        uses: actions/upload-artifact@v4
+        with:
+          name: ainar-windows-pkg-${{ matrix.arch }}
+          path: "*.zip"
+
+  package-macos:
+    needs: build-binaries
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download binary
+        uses: actions/download-artifact@v4
+        with:
+          name: ainar-darwin-${{ matrix.arch }}
+          path: .
+
+      - name: Get version
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      # TODO: Add macOS code signing
+      # - name: Sign binary (placeholder)
+      #   run: echo "Signing placeholder - add Developer ID certificate"
+
+      - name: Create app bundle and DMG
+        run: |
+          chmod +x ainar-darwin-${{ matrix.arch }}
+          
+          # Create app bundle structure
+          mkdir -p AINAR.app/Contents/MacOS
+          mkdir -p AINAR.app/Contents/Resources
+          
+          cp ainar-darwin-${{ matrix.arch }} AINAR.app/Contents/MacOS/ainar
+          
+          # Create Info.plist
+          cat > AINAR.app/Contents/Info.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>CFBundleExecutable</key>
+            <string>ainar</string>
+            <key>CFBundleIdentifier</key>
+            <string>com.ainar.app</string>
+            <key>CFBundleName</key>
+            <string>AINAR</string>
+            <key>CFBundleVersion</key>
+            <string>${{ steps.version.outputs.VERSION }}</string>
+            <key>CFBundleShortVersionString</key>
+            <string>${{ steps.version.outputs.VERSION }}</string>
+            <key>LSMinimumSystemVersion</key>
+            <string>10.15</string>
+          </dict>
+          </plist>
+          EOF
+          
+          # Create LaunchAgent plist
+          mkdir -p pkg/Library/LaunchAgents
+          cat > pkg/Library/LaunchAgents/com.ainar.app.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>Label</key>
+            <string>com.ainar.app</string>
+            <key>ProgramArguments</key>
+            <array>
+              <string>/Applications/AINAR.app/Contents/MacOS/ainar</string>
+              <string>serve</string>
+            </array>
+            <key>RunAtLoad</key>
+            <true/>
+            <key>KeepAlive</key>
+            <true/>
+          </dict>
+          </plist>
+          EOF
+          
+          # Create DMG
+          mkdir -p dmg_contents
+          cp -r AINAR.app dmg_contents/
+          cp pkg/Library/LaunchAgents/com.ainar.app.plist dmg_contents/
+          ln -s /Applications dmg_contents/Applications
+          
+          hdiutil create -volname "AINAR" -srcfolder dmg_contents -ov -format UDZO ainar-macos-${{ matrix.arch }}.dmg
+
+      - name: Upload macOS package
+        uses: actions/upload-artifact@v4
+        with:
+          name: ainar-macos-${{ matrix.arch }}
+          path: "*.dmg"
+
+  create-release:
+    needs: [package-linux, package-windows, package-macos]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Get version
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Collect release files
+        run: |
+          mkdir -p release
+          find artifacts -type f \( -name "*.deb" -o -name "*.rpm" -o -name "*.zip" -o -name "*.dmg" \) -exec cp {} release/ \;
+          # Also copy raw binaries
+          find artifacts -name "ainar-*" -type f ! -name "*.deb" ! -name "*.rpm" ! -name "*.zip" ! -name "*.dmg" -exec cp {} release/ \;
+          ls -la release/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release/*
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

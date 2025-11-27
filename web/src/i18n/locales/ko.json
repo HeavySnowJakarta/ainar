@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "AINAR",
+    "subtitle": "AI 모델 라우터",
+    "description": "여러 AI 공급자를 위한 통합 OpenAI 호환 API 게이트웨이"
+  },
+  "nav": {
+    "providers": "공급자",
+    "keys": "API 키",
+    "aliases": "별칭"
+  },
+  "providers": {
+    "title": "업스트림 공급자",
+    "description": "AI 공급자를 구성합니다",
+    "add": "공급자 추가",
+    "edit": "공급자 편집",
+    "delete": "공급자 삭제",
+    "name": "공급자 이름",
+    "code": "공급자 코드",
+    "codeHint": "소문자, 숫자, '.', '-', '_'만 사용 가능",
+    "apiType": "API 유형",
+    "baseUrl": "기본 URL",
+    "apiKey": "API 키",
+    "enabled": "활성화됨",
+    "disabled": "비활성화됨",
+    "confirmDelete": "이 공급자를 삭제하시겠습니까?",
+    "searchKnown": "알려진 공급자 검색...",
+    "noProviders": "구성된 공급자가 없습니다. 첫 번째 공급자를 추가하여 시작하세요.",
+    "hasKey": "API 키 구성됨",
+    "noKey": "API 키 없음"
+  },
+  "keys": {
+    "title": "다운스트림 API 키",
+    "description": "애플리케이션용 API 키 관리",
+    "generate": "키 생성",
+    "delete": "키 삭제",
+    "name": "키 이름",
+    "limitType": "제한 유형",
+    "limitTokens": "최대 토큰",
+    "usage": "사용량",
+    "created": "생성일",
+    "confirmDelete": "이 API 키를 삭제하시겠습니까?",
+    "keyGenerated": "API 키가 생성되었습니다",
+    "keyWarning": "이 키를 지금 저장하세요. 한 번만 표시됩니다!",
+    "noKeys": "생성된 API 키가 없습니다. 애플리케이션용 키를 생성하세요.",
+    "limitTypes": {
+      "none": "제한 없음",
+      "daily": "일일",
+      "weekly": "주간",
+      "monthly": "월간",
+      "total": "총계"
+    },
+    "copy": "복사",
+    "copied": "복사됨!"
+  },
+  "aliases": {
+    "title": "모델 별칭",
+    "description": "긴 모델 이름의 단축키를 만듭니다",
+    "add": "별칭 추가",
+    "delete": "별칭 삭제",
+    "from": "별칭",
+    "to": "전체 모델 경로",
+    "confirmDelete": "이 별칭을 삭제하시겠습니까?",
+    "noAliases": "구성된 별칭이 없습니다. 모델 이름을 간소화하려면 별칭을 추가하세요.",
+    "example": "예: 'ora' → 'openrouter/anthropic'"
+  },
+  "common": {
+    "save": "저장",
+    "cancel": "취소",
+    "close": "닫기",
+    "loading": "로딩 중...",
+    "error": "오류",
+    "success": "성공",
+    "confirm": "확인",
+    "actions": "작업",
+    "status": "상태"
+  },
+  "errors": {
+    "loadFailed": "데이터 로드 실패",
+    "saveFailed": "저장 실패",
+    "deleteFailed": "삭제 실패",
+    "invalidCode": "잘못된 공급자 코드",
+    "required": "이 필드는 필수입니다"
+  }
+}

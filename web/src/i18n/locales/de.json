@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "AINAR",
+    "subtitle": "KI-Modell-Router",
+    "description": "Einheitliches OpenAI-kompatibles API-Gateway für mehrere KI-Anbieter"
+  },
+  "nav": {
+    "providers": "Anbieter",
+    "keys": "API-Schlüssel",
+    "aliases": "Aliase"
+  },
+  "providers": {
+    "title": "Upstream-Anbieter",
+    "description": "Konfigurieren Sie Ihre KI-Anbieter",
+    "add": "Anbieter hinzufügen",
+    "edit": "Anbieter bearbeiten",
+    "delete": "Anbieter löschen",
+    "name": "Anbietername",
+    "code": "Anbietercode",
+    "codeHint": "Nur Kleinbuchstaben, Zahlen, '.', '-' und '_' erlaubt",
+    "apiType": "API-Typ",
+    "baseUrl": "Basis-URL",
+    "apiKey": "API-Schlüssel",
+    "enabled": "Aktiviert",
+    "disabled": "Deaktiviert",
+    "confirmDelete": "Sind Sie sicher, dass Sie diesen Anbieter löschen möchten?",
+    "searchKnown": "Bekannte Anbieter suchen...",
+    "noProviders": "Keine Anbieter konfiguriert. Fügen Sie Ihren ersten Anbieter hinzu, um zu beginnen.",
+    "hasKey": "API-Schlüssel konfiguriert",
+    "noKey": "Kein API-Schlüssel"
+  },
+  "keys": {
+    "title": "Downstream-API-Schlüssel",
+    "description": "Verwalten Sie API-Schlüssel für Ihre Anwendungen",
+    "generate": "Schlüssel generieren",
+    "delete": "Schlüssel löschen",
+    "name": "Schlüsselname",
+    "limitType": "Limittyp",
+    "limitTokens": "Maximale Token",
+    "usage": "Nutzung",
+    "created": "Erstellt",
+    "confirmDelete": "Sind Sie sicher, dass Sie diesen API-Schlüssel löschen möchten?",
+    "keyGenerated": "Ihr API-Schlüssel wurde generiert",
+    "keyWarning": "Speichern Sie diesen Schlüssel jetzt. Er wird nur einmal angezeigt!",
+    "noKeys": "Keine API-Schlüssel generiert. Generieren Sie einen Schlüssel für Ihre Anwendungen.",
+    "limitTypes": {
+      "none": "Kein Limit",
+      "daily": "Täglich",
+      "weekly": "Wöchentlich",
+      "monthly": "Monatlich",
+      "total": "Gesamt"
+    },
+    "copy": "Kopieren",
+    "copied": "Kopiert!"
+  },
+  "aliases": {
+    "title": "Modell-Aliase",
+    "description": "Erstellen Sie Abkürzungen für lange Modellnamen",
+    "add": "Alias hinzufügen",
+    "delete": "Alias löschen",
+    "from": "Alias",
+    "to": "Vollständiger Modellpfad",
+    "confirmDelete": "Sind Sie sicher, dass Sie diesen Alias löschen möchten?",
+    "noAliases": "Keine Aliase konfiguriert. Fügen Sie einen Alias hinzu, um Modellnamen zu vereinfachen.",
+    "example": "Beispiel: 'ora' → 'openrouter/anthropic'"
+  },
+  "common": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "loading": "Lädt...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "confirm": "Bestätigen",
+    "actions": "Aktionen",
+    "status": "Status"
+  },
+  "errors": {
+    "loadFailed": "Fehler beim Laden der Daten",
+    "saveFailed": "Fehler beim Speichern",
+    "deleteFailed": "Fehler beim Löschen",
+    "invalidCode": "Ungültiger Anbietercode",
+    "required": "Dieses Feld ist erforderlich"
+  }
+}
