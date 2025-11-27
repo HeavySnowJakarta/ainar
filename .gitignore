@@ -7,6 +7,8 @@
 *.dll
 *.so
 *.dylib
+/ainar
+/dist/
 
 # Test binary, built with `go test -c`
 *.test
@@ -28,5 +30,33 @@ go.work.sum
 .env
 
 # Editor/IDE
-# .idea/
-# .vscode/
+.idea/
+.vscode/
+
+# Node.js / Frontend
+web/node_modules/
+web/dist/
+web/.vite/
+
+# Build artifacts
+/build/
+*.msi
+*.dmg
+*.deb
+*.rpm
+*.pkg.tar.*
+
+# Configuration files (may contain secrets)
+config.yaml
+config.yml
+*.local.yaml
+*.local.yml
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
