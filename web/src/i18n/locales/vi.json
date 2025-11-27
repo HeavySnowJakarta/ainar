@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "AINAR",
+    "subtitle": "Bộ Định Tuyến Mô Hình AI",
+    "description": "Cổng API tương thích OpenAI thống nhất cho nhiều nhà cung cấp AI"
+  },
+  "nav": {
+    "providers": "Nhà cung cấp",
+    "keys": "Khóa API",
+    "aliases": "Bí danh"
+  },
+  "providers": {
+    "title": "Nhà Cung Cấp Upstream",
+    "description": "Cấu hình các nhà cung cấp AI của bạn",
+    "add": "Thêm Nhà Cung Cấp",
+    "edit": "Chỉnh Sửa Nhà Cung Cấp",
+    "delete": "Xóa Nhà Cung Cấp",
+    "name": "Tên Nhà Cung Cấp",
+    "code": "Mã Nhà Cung Cấp",
+    "codeHint": "Chỉ cho phép chữ thường, số, '.', '-' và '_'",
+    "apiType": "Loại API",
+    "baseUrl": "URL Cơ Sở",
+    "apiKey": "Khóa API",
+    "enabled": "Đã Bật",
+    "disabled": "Đã Tắt",
+    "confirmDelete": "Bạn có chắc muốn xóa nhà cung cấp này không?",
+    "searchKnown": "Tìm kiếm nhà cung cấp đã biết...",
+    "noProviders": "Chưa có nhà cung cấp nào được cấu hình. Thêm nhà cung cấp đầu tiên để bắt đầu.",
+    "hasKey": "Khóa API đã được cấu hình",
+    "noKey": "Không có Khóa API"
+  },
+  "keys": {
+    "title": "Khóa API Downstream",
+    "description": "Quản lý khóa API cho các ứng dụng của bạn",
+    "generate": "Tạo Khóa",
+    "delete": "Xóa Khóa",
+    "name": "Tên Khóa",
+    "limitType": "Loại Giới Hạn",
+    "limitTokens": "Token Tối Đa",
+    "usage": "Sử Dụng",
+    "created": "Đã Tạo",
+    "confirmDelete": "Bạn có chắc muốn xóa khóa API này không?",
+    "keyGenerated": "Khóa API của bạn đã được tạo",
+    "keyWarning": "Lưu khóa này ngay bây giờ. Nó sẽ chỉ được hiển thị một lần!",
+    "noKeys": "Chưa có khóa API nào được tạo. Tạo một khóa cho các ứng dụng của bạn.",
+    "limitTypes": {
+      "none": "Không Giới Hạn",
+      "daily": "Hàng Ngày",
+      "weekly": "Hàng Tuần",
+      "monthly": "Hàng Tháng",
+      "total": "Tổng Cộng"
+    },
+    "copy": "Sao Chép",
+    "copied": "Đã Sao Chép!"
+  },
+  "aliases": {
+    "title": "Bí Danh Mô Hình",
+    "description": "Tạo lối tắt cho các tên mô hình dài",
+    "add": "Thêm Bí Danh",
+    "delete": "Xóa Bí Danh",
+    "from": "Bí Danh",
+    "to": "Đường Dẫn Mô Hình Đầy Đủ",
+    "confirmDelete": "Bạn có chắc muốn xóa bí danh này không?",
+    "noAliases": "Chưa có bí danh nào được cấu hình. Thêm một bí danh để đơn giản hóa tên mô hình.",
+    "example": "Ví dụ: 'ora' → 'openrouter/anthropic'"
+  },
+  "common": {
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "close": "Đóng",
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "confirm": "Xác nhận",
+    "actions": "Hành động",
+    "status": "Trạng thái"
+  },
+  "errors": {
+    "loadFailed": "Không thể tải dữ liệu",
+    "saveFailed": "Lưu thất bại",
+    "deleteFailed": "Xóa thất bại",
+    "invalidCode": "Mã nhà cung cấp không hợp lệ",
+    "required": "Trường này là bắt buộc"
+  }
+}

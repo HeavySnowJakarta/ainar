@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "AINAR",
+    "subtitle": "Router Modelli IA",
+    "description": "Gateway API unificato compatibile con OpenAI per più provider di IA"
+  },
+  "nav": {
+    "providers": "Provider",
+    "keys": "Chiavi API",
+    "aliases": "Alias"
+  },
+  "providers": {
+    "title": "Provider Upstream",
+    "description": "Configura i tuoi provider di IA",
+    "add": "Aggiungi Provider",
+    "edit": "Modifica Provider",
+    "delete": "Elimina Provider",
+    "name": "Nome Provider",
+    "code": "Codice Provider",
+    "codeHint": "Sono consentiti solo lettere minuscole, numeri, '.', '-' e '_'",
+    "apiType": "Tipo API",
+    "baseUrl": "URL Base",
+    "apiKey": "Chiave API",
+    "enabled": "Abilitato",
+    "disabled": "Disabilitato",
+    "confirmDelete": "Sei sicuro di voler eliminare questo provider?",
+    "searchKnown": "Cerca provider conosciuti...",
+    "noProviders": "Nessun provider configurato. Aggiungi il tuo primo provider per iniziare.",
+    "hasKey": "Chiave API configurata",
+    "noKey": "Nessuna Chiave API"
+  },
+  "keys": {
+    "title": "Chiavi API Downstream",
+    "description": "Gestisci le chiavi API per le tue applicazioni",
+    "generate": "Genera Chiave",
+    "delete": "Elimina Chiave",
+    "name": "Nome Chiave",
+    "limitType": "Tipo Limite",
+    "limitTokens": "Token Massimi",
+    "usage": "Utilizzo",
+    "created": "Creato",
+    "confirmDelete": "Sei sicuro di voler eliminare questa chiave API?",
+    "keyGenerated": "La tua chiave API è stata generata",
+    "keyWarning": "Salva questa chiave ora. Verrà mostrata solo una volta!",
+    "noKeys": "Nessuna chiave API generata. Genera una chiave per le tue applicazioni.",
+    "limitTypes": {
+      "none": "Nessun Limite",
+      "daily": "Giornaliero",
+      "weekly": "Settimanale",
+      "monthly": "Mensile",
+      "total": "Totale"
+    },
+    "copy": "Copia",
+    "copied": "Copiato!"
+  },
+  "aliases": {
+    "title": "Alias Modelli",
+    "description": "Crea scorciatoie per nomi di modelli lunghi",
+    "add": "Aggiungi Alias",
+    "delete": "Elimina Alias",
+    "from": "Alias",
+    "to": "Percorso Modello Completo",
+    "confirmDelete": "Sei sicuro di voler eliminare questo alias?",
+    "noAliases": "Nessun alias configurato. Aggiungi un alias per semplificare i nomi dei modelli.",
+    "example": "Esempio: 'ora' → 'openrouter/anthropic'"
+  },
+  "common": {
+    "save": "Salva",
+    "cancel": "Annulla",
+    "close": "Chiudi",
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo",
+    "confirm": "Conferma",
+    "actions": "Azioni",
+    "status": "Stato"
+  },
+  "errors": {
+    "loadFailed": "Errore nel caricamento dei dati",
+    "saveFailed": "Errore nel salvataggio",
+    "deleteFailed": "Errore nell'eliminazione",
+    "invalidCode": "Codice provider non valido",
+    "required": "Questo campo è obbligatorio"
+  }
+}

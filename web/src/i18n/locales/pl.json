@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "AINAR",
+    "subtitle": "Router Modeli AI",
+    "description": "Zunifikowana brama API zgodna z OpenAI dla wielu dostawców AI"
+  },
+  "nav": {
+    "providers": "Dostawcy",
+    "keys": "Klucze API",
+    "aliases": "Aliasy"
+  },
+  "providers": {
+    "title": "Dostawcy Upstream",
+    "description": "Skonfiguruj swoich dostawców AI",
+    "add": "Dodaj Dostawcę",
+    "edit": "Edytuj Dostawcę",
+    "delete": "Usuń Dostawcę",
+    "name": "Nazwa Dostawcy",
+    "code": "Kod Dostawcy",
+    "codeHint": "Dozwolone są tylko małe litery, cyfry, '.', '-' i '_'",
+    "apiType": "Typ API",
+    "baseUrl": "Bazowy URL",
+    "apiKey": "Klucz API",
+    "enabled": "Włączony",
+    "disabled": "Wyłączony",
+    "confirmDelete": "Czy na pewno chcesz usunąć tego dostawcę?",
+    "searchKnown": "Szukaj znanych dostawców...",
+    "noProviders": "Brak skonfigurowanych dostawców. Dodaj pierwszego dostawcę, aby rozpocząć.",
+    "hasKey": "Klucz API skonfigurowany",
+    "noKey": "Brak Klucza API"
+  },
+  "keys": {
+    "title": "Klucze API Downstream",
+    "description": "Zarządzaj kluczami API dla swoich aplikacji",
+    "generate": "Generuj Klucz",
+    "delete": "Usuń Klucz",
+    "name": "Nazwa Klucza",
+    "limitType": "Typ Limitu",
+    "limitTokens": "Maksymalna Liczba Tokenów",
+    "usage": "Użycie",
+    "created": "Utworzono",
+    "confirmDelete": "Czy na pewno chcesz usunąć ten klucz API?",
+    "keyGenerated": "Twój klucz API został wygenerowany",
+    "keyWarning": "Zapisz ten klucz teraz. Zostanie wyświetlony tylko raz!",
+    "noKeys": "Brak wygenerowanych kluczy API. Wygeneruj klucz dla swoich aplikacji.",
+    "limitTypes": {
+      "none": "Bez Limitu",
+      "daily": "Dzienny",
+      "weekly": "Tygodniowy",
+      "monthly": "Miesięczny",
+      "total": "Całkowity"
+    },
+    "copy": "Kopiuj",
+    "copied": "Skopiowano!"
+  },
+  "aliases": {
+    "title": "Aliasy Modeli",
+    "description": "Twórz skróty dla długich nazw modeli",
+    "add": "Dodaj Alias",
+    "delete": "Usuń Alias",
+    "from": "Alias",
+    "to": "Pełna Ścieżka Modelu",
+    "confirmDelete": "Czy na pewno chcesz usunąć ten alias?",
+    "noAliases": "Brak skonfigurowanych aliasów. Dodaj alias, aby uprościć nazwy modeli.",
+    "example": "Przykład: 'ora' → 'openrouter/anthropic'"
+  },
+  "common": {
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "close": "Zamknij",
+    "loading": "Ładowanie...",
+    "error": "Błąd",
+    "success": "Sukces",
+    "confirm": "Potwierdź",
+    "actions": "Akcje",
+    "status": "Status"
+  },
+  "errors": {
+    "loadFailed": "Nie udało się załadować danych",
+    "saveFailed": "Nie udało się zapisać",
+    "deleteFailed": "Nie udało się usunąć",
+    "invalidCode": "Nieprawidłowy kod dostawcy",
+    "required": "To pole jest wymagane"
+  }
+}

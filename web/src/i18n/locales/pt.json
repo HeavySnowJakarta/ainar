@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "AINAR",
+    "subtitle": "Roteador de Modelos IA",
+    "description": "Gateway de API compatível com OpenAI para múltiplos provedores de IA"
+  },
+  "nav": {
+    "providers": "Provedores",
+    "keys": "Chaves API",
+    "aliases": "Aliases"
+  },
+  "providers": {
+    "title": "Provedores Upstream",
+    "description": "Configure seus provedores de IA",
+    "add": "Adicionar Provedor",
+    "edit": "Editar Provedor",
+    "delete": "Excluir Provedor",
+    "name": "Nome do Provedor",
+    "code": "Código do Provedor",
+    "codeHint": "Apenas letras minúsculas, números, '.', '-' e '_' são permitidos",
+    "apiType": "Tipo de API",
+    "baseUrl": "URL Base",
+    "apiKey": "Chave API",
+    "enabled": "Ativado",
+    "disabled": "Desativado",
+    "confirmDelete": "Tem certeza de que deseja excluir este provedor?",
+    "searchKnown": "Buscar provedores conhecidos...",
+    "noProviders": "Nenhum provedor configurado. Adicione seu primeiro provedor para começar.",
+    "hasKey": "Chave API configurada",
+    "noKey": "Sem Chave API"
+  },
+  "keys": {
+    "title": "Chaves API Downstream",
+    "description": "Gerencie chaves API para suas aplicações",
+    "generate": "Gerar Chave",
+    "delete": "Excluir Chave",
+    "name": "Nome da Chave",
+    "limitType": "Tipo de Limite",
+    "limitTokens": "Tokens Máximos",
+    "usage": "Uso",
+    "created": "Criado",
+    "confirmDelete": "Tem certeza de que deseja excluir esta chave API?",
+    "keyGenerated": "Sua chave API foi gerada",
+    "keyWarning": "Salve esta chave agora. Ela será mostrada apenas uma vez!",
+    "noKeys": "Nenhuma chave API gerada. Gere uma chave para suas aplicações.",
+    "limitTypes": {
+      "none": "Sem Limite",
+      "daily": "Diário",
+      "weekly": "Semanal",
+      "monthly": "Mensal",
+      "total": "Total"
+    },
+    "copy": "Copiar",
+    "copied": "Copiado!"
+  },
+  "aliases": {
+    "title": "Aliases de Modelos",
+    "description": "Crie atalhos para nomes de modelos longos",
+    "add": "Adicionar Alias",
+    "delete": "Excluir Alias",
+    "from": "Alias",
+    "to": "Caminho Completo do Modelo",
+    "confirmDelete": "Tem certeza de que deseja excluir este alias?",
+    "noAliases": "Nenhum alias configurado. Adicione um alias para simplificar nomes de modelos.",
+    "example": "Exemplo: 'ora' → 'openrouter/anthropic'"
+  },
+  "common": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso",
+    "confirm": "Confirmar",
+    "actions": "Ações",
+    "status": "Status"
+  },
+  "errors": {
+    "loadFailed": "Falha ao carregar dados",
+    "saveFailed": "Falha ao salvar",
+    "deleteFailed": "Falha ao excluir",
+    "invalidCode": "Código de provedor inválido",
+    "required": "Este campo é obrigatório"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "AINAR",
+    "subtitle": "Enrutador de Modelos IA",
+    "description": "Pasarela API compatible con OpenAI para múltiples proveedores de IA"
+  },
+  "nav": {
+    "providers": "Proveedores",
+    "keys": "Claves API",
+    "aliases": "Alias"
+  },
+  "providers": {
+    "title": "Proveedores Upstream",
+    "description": "Configura tus proveedores de IA",
+    "add": "Añadir Proveedor",
+    "edit": "Editar Proveedor",
+    "delete": "Eliminar Proveedor",
+    "name": "Nombre del Proveedor",
+    "code": "Código del Proveedor",
+    "codeHint": "Solo letras minúsculas, números, '.', '-' y '_' permitidos",
+    "apiType": "Tipo de API",
+    "baseUrl": "URL Base",
+    "apiKey": "Clave API",
+    "enabled": "Habilitado",
+    "disabled": "Deshabilitado",
+    "confirmDelete": "¿Estás seguro de que quieres eliminar este proveedor?",
+    "searchKnown": "Buscar proveedores conocidos...",
+    "noProviders": "No hay proveedores configurados. Añade tu primer proveedor para comenzar.",
+    "hasKey": "Clave API configurada",
+    "noKey": "Sin Clave API"
+  },
+  "keys": {
+    "title": "Claves API Downstream",
+    "description": "Gestiona las claves API para tus aplicaciones",
+    "generate": "Generar Clave",
+    "delete": "Eliminar Clave",
+    "name": "Nombre de la Clave",
+    "limitType": "Tipo de Límite",
+    "limitTokens": "Tokens Máximos",
+    "usage": "Uso",
+    "created": "Creado",
+    "confirmDelete": "¿Estás seguro de que quieres eliminar esta clave API?",
+    "keyGenerated": "Tu clave API ha sido generada",
+    "keyWarning": "¡Guarda esta clave ahora. Solo se mostrará una vez!",
+    "noKeys": "No hay claves API generadas. Genera una clave para tus aplicaciones.",
+    "limitTypes": {
+      "none": "Sin Límite",
+      "daily": "Diario",
+      "weekly": "Semanal",
+      "monthly": "Mensual",
+      "total": "Total"
+    },
+    "copy": "Copiar",
+    "copied": "¡Copiado!"
+  },
+  "aliases": {
+    "title": "Alias de Modelos",
+    "description": "Crea atajos para nombres de modelos largos",
+    "add": "Añadir Alias",
+    "delete": "Eliminar Alias",
+    "from": "Alias",
+    "to": "Ruta Completa del Modelo",
+    "confirmDelete": "¿Estás seguro de que quieres eliminar este alias?",
+    "noAliases": "No hay alias configurados. Añade un alias para simplificar los nombres de modelos.",
+    "example": "Ejemplo: 'ora' → 'openrouter/anthropic'"
+  },
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "confirm": "Confirmar",
+    "actions": "Acciones",
+    "status": "Estado"
+  },
+  "errors": {
+    "loadFailed": "Error al cargar los datos",
+    "saveFailed": "Error al guardar",
+    "deleteFailed": "Error al eliminar",
+    "invalidCode": "Código de proveedor inválido",
+    "required": "Este campo es obligatorio"
+  }
+}

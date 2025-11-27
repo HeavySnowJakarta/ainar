@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "AINAR",
+    "subtitle": "AI Model Router",
+    "description": "Unified OpenAI-compatible API gateway for multiple AI providers"
+  },
+  "nav": {
+    "providers": "Providers",
+    "keys": "API Keys",
+    "aliases": "Aliases"
+  },
+  "providers": {
+    "title": "Upstream Providers",
+    "description": "Configure your AI providers",
+    "add": "Add Provider",
+    "edit": "Edit Provider",
+    "delete": "Delete Provider",
+    "name": "Provider Name",
+    "code": "Provider Code",
+    "codeHint": "Only lowercase letters, numbers, '.', '-' and '_' allowed",
+    "apiType": "API Type",
+    "baseUrl": "Base URL",
+    "apiKey": "API Key",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "confirmDelete": "Are you sure you want to delete this provider?",
+    "searchKnown": "Search known providers...",
+    "noProviders": "No providers configured. Add your first provider to get started.",
+    "hasKey": "API Key configured",
+    "noKey": "No API Key"
+  },
+  "keys": {
+    "title": "Downstream API Keys",
+    "description": "Manage API keys for your applications",
+    "generate": "Generate Key",
+    "delete": "Delete Key",
+    "name": "Key Name",
+    "limitType": "Limit Type",
+    "limitTokens": "Max Tokens",
+    "usage": "Usage",
+    "created": "Created",
+    "confirmDelete": "Are you sure you want to delete this API key?",
+    "keyGenerated": "Your API key has been generated",
+    "keyWarning": "Save this key now. It will only be shown once!",
+    "noKeys": "No API keys generated. Generate a key for your applications.",
+    "limitTypes": {
+      "none": "No Limit",
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "total": "Total"
+    },
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "aliases": {
+    "title": "Model Aliases",
+    "description": "Create shortcuts for long model names",
+    "add": "Add Alias",
+    "delete": "Delete Alias",
+    "from": "Alias",
+    "to": "Full Model Path",
+    "confirmDelete": "Are you sure you want to delete this alias?",
+    "noAliases": "No aliases configured. Add an alias to simplify model names.",
+    "example": "Example: 'ora' → 'openrouter/anthropic'"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "actions": "Actions",
+    "status": "Status"
+  },
+  "errors": {
+    "loadFailed": "Failed to load data",
+    "saveFailed": "Failed to save",
+    "deleteFailed": "Failed to delete",
+    "invalidCode": "Invalid provider code",
+    "required": "This field is required"
+  }
+}

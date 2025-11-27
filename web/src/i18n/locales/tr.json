@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "AINAR",
+    "subtitle": "AI Model Yönlendirici",
+    "description": "Birden fazla AI sağlayıcı için birleşik OpenAI uyumlu API ağ geçidi"
+  },
+  "nav": {
+    "providers": "Sağlayıcılar",
+    "keys": "API Anahtarları",
+    "aliases": "Takma Adlar"
+  },
+  "providers": {
+    "title": "Yukarı Akış Sağlayıcıları",
+    "description": "AI sağlayıcılarınızı yapılandırın",
+    "add": "Sağlayıcı Ekle",
+    "edit": "Sağlayıcıyı Düzenle",
+    "delete": "Sağlayıcıyı Sil",
+    "name": "Sağlayıcı Adı",
+    "code": "Sağlayıcı Kodu",
+    "codeHint": "Yalnızca küçük harfler, sayılar, '.', '-' ve '_' izin verilir",
+    "apiType": "API Türü",
+    "baseUrl": "Temel URL",
+    "apiKey": "API Anahtarı",
+    "enabled": "Etkin",
+    "disabled": "Devre Dışı",
+    "confirmDelete": "Bu sağlayıcıyı silmek istediğinizden emin misiniz?",
+    "searchKnown": "Bilinen sağlayıcıları ara...",
+    "noProviders": "Yapılandırılmış sağlayıcı yok. Başlamak için ilk sağlayıcınızı ekleyin.",
+    "hasKey": "API Anahtarı yapılandırıldı",
+    "noKey": "API Anahtarı Yok"
+  },
+  "keys": {
+    "title": "Aşağı Akış API Anahtarları",
+    "description": "Uygulamalarınız için API anahtarlarını yönetin",
+    "generate": "Anahtar Oluştur",
+    "delete": "Anahtarı Sil",
+    "name": "Anahtar Adı",
+    "limitType": "Limit Türü",
+    "limitTokens": "Maksimum Token",
+    "usage": "Kullanım",
+    "created": "Oluşturuldu",
+    "confirmDelete": "Bu API anahtarını silmek istediğinizden emin misiniz?",
+    "keyGenerated": "API anahtarınız oluşturuldu",
+    "keyWarning": "Bu anahtarı şimdi kaydedin. Yalnızca bir kez gösterilecek!",
+    "noKeys": "Oluşturulmuş API anahtarı yok. Uygulamalarınız için bir anahtar oluşturun.",
+    "limitTypes": {
+      "none": "Limit Yok",
+      "daily": "Günlük",
+      "weekly": "Haftalık",
+      "monthly": "Aylık",
+      "total": "Toplam"
+    },
+    "copy": "Kopyala",
+    "copied": "Kopyalandı!"
+  },
+  "aliases": {
+    "title": "Model Takma Adları",
+    "description": "Uzun model adları için kısayollar oluşturun",
+    "add": "Takma Ad Ekle",
+    "delete": "Takma Adı Sil",
+    "from": "Takma Ad",
+    "to": "Tam Model Yolu",
+    "confirmDelete": "Bu takma adı silmek istediğinizden emin misiniz?",
+    "noAliases": "Yapılandırılmış takma ad yok. Model adlarını basitleştirmek için bir takma ad ekleyin.",
+    "example": "Örnek: 'ora' → 'openrouter/anthropic'"
+  },
+  "common": {
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "confirm": "Onayla",
+    "actions": "Eylemler",
+    "status": "Durum"
+  },
+  "errors": {
+    "loadFailed": "Veri yüklenemedi",
+    "saveFailed": "Kaydetme başarısız",
+    "deleteFailed": "Silme başarısız",
+    "invalidCode": "Geçersiz sağlayıcı kodu",
+    "required": "Bu alan gereklidir"
+  }
+}

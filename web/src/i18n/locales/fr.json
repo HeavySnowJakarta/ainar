@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "AINAR",
+    "subtitle": "Routeur de Modèles IA",
+    "description": "Passerelle API compatible OpenAI pour plusieurs fournisseurs d'IA"
+  },
+  "nav": {
+    "providers": "Fournisseurs",
+    "keys": "Clés API",
+    "aliases": "Alias"
+  },
+  "providers": {
+    "title": "Fournisseurs Upstream",
+    "description": "Configurez vos fournisseurs d'IA",
+    "add": "Ajouter un Fournisseur",
+    "edit": "Modifier le Fournisseur",
+    "delete": "Supprimer le Fournisseur",
+    "name": "Nom du Fournisseur",
+    "code": "Code du Fournisseur",
+    "codeHint": "Seules les lettres minuscules, chiffres, '.', '-' et '_' sont autorisés",
+    "apiType": "Type d'API",
+    "baseUrl": "URL de Base",
+    "apiKey": "Clé API",
+    "enabled": "Activé",
+    "disabled": "Désactivé",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce fournisseur ?",
+    "searchKnown": "Rechercher des fournisseurs connus...",
+    "noProviders": "Aucun fournisseur configuré. Ajoutez votre premier fournisseur pour commencer.",
+    "hasKey": "Clé API configurée",
+    "noKey": "Pas de Clé API"
+  },
+  "keys": {
+    "title": "Clés API Downstream",
+    "description": "Gérez les clés API pour vos applications",
+    "generate": "Générer une Clé",
+    "delete": "Supprimer la Clé",
+    "name": "Nom de la Clé",
+    "limitType": "Type de Limite",
+    "limitTokens": "Tokens Maximum",
+    "usage": "Utilisation",
+    "created": "Créé",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette clé API ?",
+    "keyGenerated": "Votre clé API a été générée",
+    "keyWarning": "Enregistrez cette clé maintenant. Elle ne sera affichée qu'une seule fois !",
+    "noKeys": "Aucune clé API générée. Générez une clé pour vos applications.",
+    "limitTypes": {
+      "none": "Pas de Limite",
+      "daily": "Quotidien",
+      "weekly": "Hebdomadaire",
+      "monthly": "Mensuel",
+      "total": "Total"
+    },
+    "copy": "Copier",
+    "copied": "Copié !"
+  },
+  "aliases": {
+    "title": "Alias de Modèles",
+    "description": "Créez des raccourcis pour les noms de modèles longs",
+    "add": "Ajouter un Alias",
+    "delete": "Supprimer l'Alias",
+    "from": "Alias",
+    "to": "Chemin Complet du Modèle",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer cet alias ?",
+    "noAliases": "Aucun alias configuré. Ajoutez un alias pour simplifier les noms de modèles.",
+    "example": "Exemple : 'ora' → 'openrouter/anthropic'"
+  },
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "confirm": "Confirmer",
+    "actions": "Actions",
+    "status": "Statut"
+  },
+  "errors": {
+    "loadFailed": "Échec du chargement des données",
+    "saveFailed": "Échec de l'enregistrement",
+    "deleteFailed": "Échec de la suppression",
+    "invalidCode": "Code de fournisseur invalide",
+    "required": "Ce champ est obligatoire"
+  }
+}

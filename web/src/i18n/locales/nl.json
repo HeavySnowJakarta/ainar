@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "AINAR",
+    "subtitle": "AI Model Router",
+    "description": "Uniforme OpenAI-compatibele API-gateway voor meerdere AI-providers"
+  },
+  "nav": {
+    "providers": "Providers",
+    "keys": "API-sleutels",
+    "aliases": "Aliassen"
+  },
+  "providers": {
+    "title": "Upstream Providers",
+    "description": "Configureer uw AI-providers",
+    "add": "Provider Toevoegen",
+    "edit": "Provider Bewerken",
+    "delete": "Provider Verwijderen",
+    "name": "Providernaam",
+    "code": "Providercode",
+    "codeHint": "Alleen kleine letters, cijfers, '.', '-' en '_' toegestaan",
+    "apiType": "API-type",
+    "baseUrl": "Basis-URL",
+    "apiKey": "API-sleutel",
+    "enabled": "Ingeschakeld",
+    "disabled": "Uitgeschakeld",
+    "confirmDelete": "Weet u zeker dat u deze provider wilt verwijderen?",
+    "searchKnown": "Zoek bekende providers...",
+    "noProviders": "Geen providers geconfigureerd. Voeg uw eerste provider toe om te beginnen.",
+    "hasKey": "API-sleutel geconfigureerd",
+    "noKey": "Geen API-sleutel"
+  },
+  "keys": {
+    "title": "Downstream API-sleutels",
+    "description": "Beheer API-sleutels voor uw applicaties",
+    "generate": "Sleutel Genereren",
+    "delete": "Sleutel Verwijderen",
+    "name": "Sleutelnaam",
+    "limitType": "Limiettype",
+    "limitTokens": "Maximale Tokens",
+    "usage": "Gebruik",
+    "created": "Aangemaakt",
+    "confirmDelete": "Weet u zeker dat u deze API-sleutel wilt verwijderen?",
+    "keyGenerated": "Uw API-sleutel is gegenereerd",
+    "keyWarning": "Sla deze sleutel nu op. Hij wordt slechts één keer getoond!",
+    "noKeys": "Geen API-sleutels gegenereerd. Genereer een sleutel voor uw applicaties.",
+    "limitTypes": {
+      "none": "Geen Limiet",
+      "daily": "Dagelijks",
+      "weekly": "Wekelijks",
+      "monthly": "Maandelijks",
+      "total": "Totaal"
+    },
+    "copy": "Kopiëren",
+    "copied": "Gekopieerd!"
+  },
+  "aliases": {
+    "title": "Model Aliassen",
+    "description": "Maak snelkoppelingen voor lange modelnamen",
+    "add": "Alias Toevoegen",
+    "delete": "Alias Verwijderen",
+    "from": "Alias",
+    "to": "Volledig Modelpad",
+    "confirmDelete": "Weet u zeker dat u deze alias wilt verwijderen?",
+    "noAliases": "Geen aliassen geconfigureerd. Voeg een alias toe om modelnamen te vereenvoudigen.",
+    "example": "Voorbeeld: 'ora' → 'openrouter/anthropic'"
+  },
+  "common": {
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "close": "Sluiten",
+    "loading": "Laden...",
+    "error": "Fout",
+    "success": "Succes",
+    "confirm": "Bevestigen",
+    "actions": "Acties",
+    "status": "Status"
+  },
+  "errors": {
+    "loadFailed": "Laden van gegevens mislukt",
+    "saveFailed": "Opslaan mislukt",
+    "deleteFailed": "Verwijderen mislukt",
+    "invalidCode": "Ongeldige providercode",
+    "required": "Dit veld is verplicht"
+  }
+}

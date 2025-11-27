@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "AINAR",
+    "subtitle": "AIモデルルーター",
+    "description": "複数のAIプロバイダー向けの統一されたOpenAI互換APIゲートウェイ"
+  },
+  "nav": {
+    "providers": "プロバイダー",
+    "keys": "APIキー",
+    "aliases": "エイリアス"
+  },
+  "providers": {
+    "title": "アップストリームプロバイダー",
+    "description": "AIプロバイダーを設定する",
+    "add": "プロバイダーを追加",
+    "edit": "プロバイダーを編集",
+    "delete": "プロバイダーを削除",
+    "name": "プロバイダー名",
+    "code": "プロバイダーコード",
+    "codeHint": "小文字、数字、'.'、'-'、'_'のみ使用可能",
+    "apiType": "APIタイプ",
+    "baseUrl": "ベースURL",
+    "apiKey": "APIキー",
+    "enabled": "有効",
+    "disabled": "無効",
+    "confirmDelete": "このプロバイダーを削除してもよろしいですか？",
+    "searchKnown": "既知のプロバイダーを検索...",
+    "noProviders": "プロバイダーが設定されていません。最初のプロバイダーを追加してください。",
+    "hasKey": "APIキー設定済み",
+    "noKey": "APIキーなし"
+  },
+  "keys": {
+    "title": "ダウンストリームAPIキー",
+    "description": "アプリケーション用のAPIキーを管理",
+    "generate": "キーを生成",
+    "delete": "キーを削除",
+    "name": "キー名",
+    "limitType": "制限タイプ",
+    "limitTokens": "最大トークン数",
+    "usage": "使用量",
+    "created": "作成日時",
+    "confirmDelete": "このAPIキーを削除してもよろしいですか？",
+    "keyGenerated": "APIキーが生成されました",
+    "keyWarning": "このキーを今すぐ保存してください。一度しか表示されません！",
+    "noKeys": "APIキーが生成されていません。アプリケーション用のキーを生成してください。",
+    "limitTypes": {
+      "none": "制限なし",
+      "daily": "日次",
+      "weekly": "週次",
+      "monthly": "月次",
+      "total": "合計"
+    },
+    "copy": "コピー",
+    "copied": "コピーしました！"
+  },
+  "aliases": {
+    "title": "モデルエイリアス",
+    "description": "長いモデル名のショートカットを作成",
+    "add": "エイリアスを追加",
+    "delete": "エイリアスを削除",
+    "from": "エイリアス",
+    "to": "フルモデルパス",
+    "confirmDelete": "このエイリアスを削除してもよろしいですか？",
+    "noAliases": "エイリアスが設定されていません。モデル名を簡略化するためにエイリアスを追加してください。",
+    "example": "例：'ora' → 'openrouter/anthropic'"
+  },
+  "common": {
+    "save": "保存",
+    "cancel": "キャンセル",
+    "close": "閉じる",
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "confirm": "確認",
+    "actions": "アクション",
+    "status": "ステータス"
+  },
+  "errors": {
+    "loadFailed": "データの読み込みに失敗しました",
+    "saveFailed": "保存に失敗しました",
+    "deleteFailed": "削除に失敗しました",
+    "invalidCode": "無効なプロバイダーコード",
+    "required": "この項目は必須です"
+  }
+}
