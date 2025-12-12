@@ -14,6 +14,7 @@
 # Code coverage profiles and other test artifacts
 *.out
 coverage.*
+coverage/
 *.coverprofile
 profile.cov
 
@@ -30,3 +31,25 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# Frontend build artifacts
+node_modules/
+dist/
+build/
+.vite/
+*.log
+*.tsbuildinfo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Release artifacts
+release/
+artifacts/
+*.zip
+*.tar.gz
+*.rpm
+*.deb
+*.pkg.tar.*
+*.msi
